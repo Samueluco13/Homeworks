@@ -1,36 +1,54 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from "react";
+import { Son } from "./Son";
 
+export const App = () => {
+const [search, setSearch] = useState("");
+const [allImgs, setAllImgs] = useState([{ titulo: "Imagen 1", url: "https://picsum.photos/600/500?random=1" },]);
+const [imagenes, setImagenes] = useState(allImgs);
 
+const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearch(value);
 
+    if (value !== "") {
+        const newImgs = allImgs.filter((imagen) =>
+                imagen.titulo.toLowerCase().includes(value.toLowerCase())
+                );
+setImagenes(newImgs);
+    } else {
+setImagenes(allImgs);
+    }
+};
 
-function App({defindo}) {
-  const [contador, setContador] = useState(0)
+const handleAddImg = () => {
+    const newImg = {
+        titulo: `imagen ${allImgs.length + 1}`,
+url: `https://picsum.photos/200/300?random=${allImgs.length + 1}`,
+    };
+    const imagenesActualizadas = [...allImgs, newImg];
+    setAllImgs(imagenesActualizadas);
+    setImagenes(imagenesActualizadas);
+};
 
-  //FUNCIONES DE LOS BOTONES
-  const handleAdd = () => {
-    setContador(contador + 1)
-  }
-
-const handleSubstract = () => {
-    setContador(contador - 1)
-  }
-
-const handleReset = () => {
-    setContador(defindo)
-  }
-
-  return (
+return (
     <>
-      <h1>CONTADOR</h1>
-      <div>
-        <button onClick={handleAdd}>Sumar</button>
-        <button onClick={handleSubstract}>Restar</button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
-      <span>{contador}</span>
-    </>
-  )
-}
+<div>
+<input
+            type="text"
+            placeholder="Buscar imagen"
+            value={search}
+            onChange={handleSearch}
+/>
 
-export default App
+<button onClick={handleAddImg}> Agregar </button>
+</div>
+<div>
+        {imagenes.map((imagen, key) => (
+<div key={key} className="">
+            <Son url={imagen.url} title={imagen.titulo} />
+</div>
+        ))}
+</div>
+    </>
+);
+};
