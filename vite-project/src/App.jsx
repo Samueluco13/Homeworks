@@ -1,36 +1,54 @@
 import { useState } from 'react'
 import './App.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { incrementbyValue, decrementByValue } from './Store/Slices/Slices'
+import Results from "./Classes/Results"
+
+
+export const App = () => {
+
+    const [incValue, setIncValue] = useState(0)
+    const [decValue, setDecValue] = useState(0)
+    const [resultados, setResultados] = useState(new Results())
+
+    const dispatch = useDispatch();
+
+    const {count} = useSelector((state) => state.counter);
+
+
+    const handleAddByValue = () => {
+        dispatch(incrementbyValue(Number(incValue))) //Se debe parsear porque lo toma como string
+    }
+
+    const handleDecrementByValue = () => {
+        dispatch(decrementByValue(decValue))
+    }
 
 
 
 
-function App({defindo}) {
-  const [contador, setContador] = useState(0)
 
-  //FUNCIONES DE LOS BOTONES
-  const handleAdd = () => {
-    setContador(contador + 1)
-  }
 
-const handleSubstract = () => {
-    setContador(contador - 1)
-  }
 
-const handleReset = () => {
-    setContador(defindo)
-  }
 
-  return (
+return (
     <>
-      <h1>CONTADOR</h1>
-      <div>
-        <button onClick={handleAdd}>Sumar</button>
-        <button onClick={handleSubstract}>Restar</button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
-      <span>{contador}</span>
-    </>
-  )
-}
+        <p>Counter is {count}</p>
 
-export default App
+
+        <label>Value to incremnet</label>
+        <input
+        type="number"
+        value={incValue}
+        onChange={(e) => {setIncValue(e.target.value)}} />
+        <button onClick = {handleAddByValue}>Increment</button>
+
+        <label>Value to decrement</label>
+        <input
+        type="number"
+        value={decValue}
+        onChange={(e) => {setDecValue(e.target.value)}} />
+        <button onClick = {handleDecrementByValue}>Decrement</button>
+    </>
+    )
+}
