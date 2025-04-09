@@ -1,35 +1,31 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import './App.css'
+import { Login } from './Pages/Login.jsx'
+import { UserProvider } from './Context/UserContext.jsx'
+import { Profile } from './Pages/Profile.jsx'
+import {Route, Routes} from 'react-router-dom'
+import {PrivateRoutes} from './Routes/PrivateRoutes.jsx'
+import Principal from './Pages/Principal.jsx'
+import { Header } from './Components/Header.jsx'
 
 
 
-
-function App({defindo}) {
-  const [contador, setContador] = useState(0)
-
-  //FUNCIONES DE LOS BOTONES
-  const handleAdd = () => {
-    setContador(contador + 1)
-  }
-
-const handleSubstract = () => {
-    setContador(contador - 1)
-  }
-
-const handleReset = () => {
-    setContador(defindo)
-  }
+function App() {
 
   return (
-    <>
-      <h1>CONTADOR</h1>
-      <div>
-        <button onClick={handleAdd}>Sumar</button>
-        <button onClick={handleSubstract}>Restar</button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
-      <span>{contador}</span>
-    </>
+    <UserProvider>
+      <Header/>
+        <Routes>
+          <Route path="/" element={<Principal/>} />
+          <Route path="/login" element={<Login/>} />
+
+          <Route path="/profile" element={
+            <PrivateRoutes>
+              <Profile/>
+            </PrivateRoutes>
+          }/>
+        </Routes>
+    </UserProvider>
   )
 }
 
