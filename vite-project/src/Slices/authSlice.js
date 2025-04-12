@@ -11,15 +11,18 @@ export const authSlice = createSlice({
         errorMessage: null
     },
     reducers: {
-        register: (state, action) => {
+        setUser: (state, action) => {
+            state.displayName = action.payload.displayName
             state.email = action.payload.email
         },
         login: (state, action) => {
             state.status = 'authenticated'
+            state.displayName = action.payload.displayName
             state.email = action.payload.email
         },
         logout: (state, action) => {
             state.status = "not authenticated",
+            state.displayName = null,
             state.email = null
         },
         checkingCredentials: (state, action) => {
@@ -28,4 +31,4 @@ export const authSlice = createSlice({
     }
 })
 
-export const {register, login, logout, checkingCredentials} = authSlice.actions
+export const {setUser, login, logout, checkingCredentials} = authSlice.actions
