@@ -1,36 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react'
+import "./App.css"
+import {Clientes} from "./Pages/Clientes"
+import {Consultas} from "./Pages/Consultas"
+import {Reclamos} from "./Pages/Reclamos"
+import { Routes, Route } from 'react-router-dom'
+import { ClientesProvider } from './Context/ClientesContext'
 
-
-
-
-function App({defindo}) {
-  const [contador, setContador] = useState(0)
-
-  //FUNCIONES DE LOS BOTONES
-  const handleAdd = () => {
-    setContador(contador + 1)
-  }
-
-const handleSubstract = () => {
-    setContador(contador - 1)
-  }
-
-const handleReset = () => {
-    setContador(defindo)
-  }
-
+export const App = () => {
   return (
-    <>
-      <h1>CONTADOR</h1>
-      <div>
-        <button onClick={handleAdd}>Sumar</button>
-        <button onClick={handleSubstract}>Restar</button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
-      <span>{contador}</span>
-    </>
+    <ClientesProvider>
+      <Routes>
+        <Route path="/" element={<Clientes />} />
+        <Route path="/consultas/:nombre" element={<Consultas />} />
+        <Route path="/reclamos/:nombre" element={<Reclamos />} />
+      </Routes>
+    </ClientesProvider>
   )
 }
-
-export default App
