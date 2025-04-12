@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { incrementbyValue, decrementByValue } from './Store/Slices/Slices'
@@ -10,35 +10,39 @@ export const App = () => {
     const [incValue, setIncValue] = useState(0)
     const [decValue, setDecValue] = useState(0)
     const [resultados, setResultados] = useState(new Results())
+    const [lastCount, setLastCount] = useState(0)
+    const [agregarResultado, setAgregarResultado] = useState(false) //Bandera para
 
     const dispatch = useDispatch();
+    const { count } = useSelector((state) => state.counter);
+  
 
-    const {count} = useSelector((state) => state.counter);
+    useEffect(() => {
+      setLastCount(count); //Se renderiza el estado cada vez que count cambia
+
+      if (agregarResultado) {
+        resultados.push(count)
+        setResultados(resultados) //Se actualiza el estado de resultados con el nuevo valor
+        setAgregarResultado(false)
+      }
+      
+    }, [count]);
 
 
     const handleAddByValue = () => {
-        resultados.push(count)
-        
-        dispatch(incrementbyValue(Number(incValue))) //Se debe parsear porque lo toma como string
-        console.log(resultados)
+      dispatch(incrementbyValue(Number(incValue))) //Se debe parserar porque se toma como string
+      setAgregarResultado(true)
     }
-
+  
     const handleDecrementByValue = () => {
-        resultados.push(count)
-        dispatch(decrementByValue(decValue))
-        console.log(resultados)
+      dispatch(decrementByValue(Number(decValue)))
+      setAgregarResultado(true)
     }
-
-
-
-
-
-
 
 
 return (
     <>
-        <p>Counter is {count}</p>
+        <p>Counter is {lastCount}</p>
 
 
         <label>Value to incremnet</label>

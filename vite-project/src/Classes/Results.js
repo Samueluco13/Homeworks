@@ -5,6 +5,7 @@ export class Results{
 
     push(value){
         this.results.push(value) //Agrega un elemento al final de la pila
+        return this.results //Devuelve la pila actualizada
     }
 
     pop(){ //Si la pila tiene elementos, devuelve y elimina el ultimo valor ingresado a la pila, sino nada
