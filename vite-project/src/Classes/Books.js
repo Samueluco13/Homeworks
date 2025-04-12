@@ -46,7 +46,7 @@ export class BookStack{
     }
 
     getBooks(){ //Devuelve toda la pila
-        return this.books;
+        return [...this.books];
     }
 
 }
