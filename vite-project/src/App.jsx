@@ -11,7 +11,7 @@ export const App = () => {
     const [decValue, setDecValue] = useState(0)
     const [resultados, setResultados] = useState(new Results())
     const [lastCount, setLastCount] = useState(0)
-    const [agregarResultado, setAgregarResultado] = useState(false) //Bandera para
+    const [agregarResultado, setAgregarResultado] = useState(false) //Bandera para saber si se debe agregar un resultado a la pila de resultados
 
     const dispatch = useDispatch();
     const { count } = useSelector((state) => state.counter);
