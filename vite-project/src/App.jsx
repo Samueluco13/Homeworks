@@ -7,6 +7,7 @@ import { Home } from './Pages/Home'
 import { ProtectedRoute } from './Components/ProtectedRoute'
 import { Crud } from './Components/Crud'
 import { Edit } from './Pages/Edit'
+import { DataComponent } from './Components/DataComponent'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/' element={<Home/>} />
         <Route path='/edit/:name/:id' element={<Edit/>} />
+        <Route path='/chat' element={<DataComponent/>} />
     </Routes>
     )
 }

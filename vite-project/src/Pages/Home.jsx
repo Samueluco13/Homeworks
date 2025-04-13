@@ -13,7 +13,8 @@ export const Home = () => {
             <ButtonNav ruta="/register" text="Registrarse" />
             <ButtonNav ruta="/login" text="Iniciar sesion" />
         </div>
-        <Link to={"/crud"} >Ir al CRUD</Link>
+        <p><Link to={"/crud"} >Ir al CRUD</Link></p>
+        <p><Link to={"/chat"} >Ir al chat</Link></p>
         </>
     );
 };
