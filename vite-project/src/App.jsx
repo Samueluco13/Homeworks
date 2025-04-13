@@ -5,13 +5,10 @@ import { Register } from './Pages/Register'
 import { Login } from './Pages/Login'
 import { Home } from './Pages/Home'
 import { ProtectedRoute } from './Components/ProtectedRoute'
+import { Crud } from './Components/Crud'
+import { Edit } from './Pages/Edit'
 
 function App() {
-
-
-
-
-
 
     return (
     <Routes>
@@ -21,9 +18,11 @@ function App() {
                 <Dashboard/>
             </ProtectedRoute>
         } />
+        <Route path='crud' element={<Crud/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/' element={<Home/>} />
+        <Route path='/edit/:name/:id' element={<Edit/>} />
     </Routes>
     )
 }

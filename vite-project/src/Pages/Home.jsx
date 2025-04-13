@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonNav } from '../Components/ButtonNav';
+import {Link} from "react-router-dom"
 
 export const Home = () => {
     return (
@@ -12,6 +13,7 @@ export const Home = () => {
             <ButtonNav ruta="/register" text="Registrarse" />
             <ButtonNav ruta="/login" text="Iniciar sesion" />
         </div>
+        <Link to={"/crud"} >Ir al CRUD</Link>
         </>
     );
 };
