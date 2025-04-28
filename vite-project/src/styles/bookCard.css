@@ -1,0 +1,22 @@
+.book-card {
+    border-color: white;
+    background-color: rgba(44, 62, 80, 0.9);
+    border-radius: 10px;
+    padding-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(19, 19, 19, 0.695);
+    transition: transform 0.2s;
+}
+
+.book-actions button{
+    background-color: #3498db;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-actions button:hover {
+    background-color: #2980b9;
+}
