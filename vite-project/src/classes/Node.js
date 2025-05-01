@@ -1,15 +1,10 @@
 export class Node{
     constructor(value){
         this.value = value;
-        this.izquierda = null;
-        this.derecha = null;
+        this.hijos = [];
     }
 
-    isLeaf(){
-        if (this.izquierda == null && this.derecha == null){
-            return true;
-        }else{
-            return false;
-        }
+    agregarHijo(nodo){
+        this.hijos.push(nodo)
     }
 }
