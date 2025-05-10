@@ -1,20 +1,55 @@
 export const arbol = {
-    valor: 10,
+    value: 10,
     izquierda: {
-        valor: 5,
+        value: 5,
         izquierda: {
-            valor: 2,
+            value: 2,
             izquierda: null,
             derecha: null
         }
     },
     derecha: {
-        valor: 15,
+        value: 15,
         izquierda: null,
         derecha: {
-            valor: 20,
+            value: 20,
             izquierda: null,
             derecha: null
         }
     }
+}
+
+export const arbol1 = {
+    name: '10',
+    children: [
+        {
+            name: '5',
+            children: [
+                { name: '2' },
+            ],
+        },
+        {
+            name: '15',
+            children: [
+                { name: '20' },
+            ],
+        },
+    ],
+};
+
+export const arbol2 = {
+    name: "10",
+    children: [{
+        name: "5",
+        children:[{
+            name: "2",
+            children: []
+        },{}]
+    },{
+        name: "15",
+        children: [{},{
+            name: "20",
+            children: [{},{}]
+        }]
+    }]
 }
