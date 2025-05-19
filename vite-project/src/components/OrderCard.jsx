@@ -11,6 +11,7 @@ export const OrderCard = ({pedido, toShirts, toPants, toShoes}) => {
                 <h3>NUEVO PEDIDO</h3>
                 <p>{pedido.desc}</p>
                 <p>{pedido.price} COP</p>
+                <p>Talla {pedido.size}</p>
             </div>
             <div className="order-card-buttons">
                 <button onClick={() => toShirts(pedido.id)}>

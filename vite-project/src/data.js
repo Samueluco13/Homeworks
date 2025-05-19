@@ -33,39 +33,38 @@ export const cosasMenu = [
 export const orders = [
     {
         "id": 1749510000000,
-        "type": "camisetas",
         "desc": "Camiseta básica blanca de algodón",
-        "price": 35000
+        "price": 35000,
+        "size": "M"
     },
     {
         "id": 1749513600000,
-        "type": "pantalones",
         "desc": "Jeans azul oscuro corte slim",
-        "price": 89000
+        "price": 89000,
+        "size": "32"
     },
     {
         "id": 1749517200000,
-        "type": "zapatos",
         "desc": "Zapatillas deportivas negras",
-        "price": 120000
+        "price": 120000,
+        "size": "40"
     },
     {
         "id": 1749520800000,
-        "type": "camisetas",
         "desc": "Camiseta estampada con diseño gráfico",
-        "price": 42000
+        "price": 42000,
+        "size": "L"
     },
     {
         "id": 1749524400000,
-        "type": "pantalones",
         "desc": "Pantalón cargo color caqui",
-        "price": 95000
+        "price": 95000,
+        "size": "34"
     },
     {
         "id": 1749528000000,
-        "type": "zapatos",
         "desc": "Zapatos formales de cuero marrón",
-        "price": 145000
+        "price": 145000,
+        "size": "41"
     }
-]
-
+];

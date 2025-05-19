@@ -7,3 +7,5 @@ CAMISETA, PANTAOLON, ZAPATOS.
 
 - USAR FIREBASE PARA EL LOGGEO Y ALMACENAMIENTO DE DATOS
 - USAR REDUX PARA MANEJAR ESTAS FUNCIONES
+
+De los productos disponibles se debe poder seleccionar la talla y el color, además de una cantidad en stock

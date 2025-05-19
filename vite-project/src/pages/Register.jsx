@@ -1,6 +1,6 @@
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { registerAuth } from "../slices/thunks/registerAuth";
+import {registerAuth} from "../slices/thunks/auth/registerAuth"
 import { useSelector, useDispatch } from "react-redux";
 import { clearError } from "../slices/errorSlice";
 import "../styles/FormPages.css";
@@ -22,8 +22,10 @@ export const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const rol = "usuario"; //Solo se pueden crear usuarios nomrales/clientes
         try {
-            await dispatch(registerAuth(formData.email, formData.password, formData.userName));
+            await dispatch(registerAuth(formData.email, formData.password, formData.userName, rol));
+            navigate("/");
         }catch (error) {
             console.error("Error al registrar usuario", error);
         }
