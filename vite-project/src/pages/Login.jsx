@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Popup } from '../components/Popup.jsx'
 import { loginAuth } from '../slices/thunks/auth/loginAuth.js'
@@ -10,12 +10,27 @@ export const Login = () => {
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.error);
-    const rol = useSelector(state => state.auth.rol);
+    const {rol} = useSelector(state => state.auth);
 
     const navigate = useNavigate();
 
     const [showFormPopup, setShowFormPopup] = useState(false);
     const [formData, setFormData] = useState({email: '', password: ''});
+
+    useEffect(() => {
+        if (rol){
+            switch (rol){
+                case "Admin":
+                    navigate("/recibidos");
+                    break;
+                case "usuario":
+                    navigate("/dashboard");
+                    break;
+                default:
+                    navigate("/");
+            }
+        }
+    },[rol]);
 
     const handleChange = (e) => {
         dispatch(clearError());
@@ -27,18 +42,7 @@ export const Login = () => {
         e.preventDefault();
         try{
             await dispatch(loginAuth(formData.email, formData.password));
-            console.log(rol)
-            // setShowFormPopup(true);
-            switch (rol){
-                case "Admin":
-                    navigate("/recibidos");
-                    break;
-                case "usuario":
-                    navigate("/dashboard");
-                    break;
-                default:
-                    navigate("/");
-            }
+            console.log(rol);
         }catch (error) {
             console.error("Error al iniciar sesion", error);
         }

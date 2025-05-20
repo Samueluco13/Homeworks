@@ -1,5 +1,5 @@
 import { db } from "../firebase/config";
-import {collection, addDoc, query, where, updateDoc, getDocs, deleteDoc, doc, onSnapshot} from 'firebase/firestore';
+import {collection, addDoc, query, where, updateDoc, getDoc, deleteDoc, doc, onSnapshot} from 'firebase/firestore';
 import { useState } from 'react';
 
 export const useCollection = (table) => {
@@ -29,6 +29,12 @@ export const useCollection = (table) => {
         })
         console.log(results)
         return unsubscribe;
+    }
+
+    const getById = async (id) => {
+        const document = await getDoc(doc(db, table, id));
+        console.log(document)
+        return {...document.data(), id: document.id}
     }
     
     const add = async (doc) => {
@@ -63,13 +69,5 @@ export const useCollection = (table) => {
         }
     }
 
-    const pruebaSet = () => {
-        setResults([
-                {talla: 32, descripcion: 'Jeans azul oscuro corte slim', precio: 89000},
-                {descripcion: 'Camiseta básica blanca de algodón', precio: 35000, talla: 'M'}
-            ])
-        // console.log("---", results)
-    }
-
-    return {getAll, add, update, dltDoc, results, pruebaSet}
+    return {getAll, add, update, dltDoc, results, getById}
 }

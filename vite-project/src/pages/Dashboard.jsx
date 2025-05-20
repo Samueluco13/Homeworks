@@ -1,37 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { ProductCard } from '../components/ProductCard'
 import { useCollection } from '../slices/useCollection.js'
-
-
+import { useNavigate } from 'react-router-dom'
 
 export const Dashboard = () => {
+    const navigate = useNavigate();
+
     const [prendas, setPrendas] = useState([])
 
-    const {getAll, results, pruebaSet} = useCollection("prendas")
+    const {getAll, results} = useCollection("prendas")
 
-    useEffect(() => {
-        // pruebaSet()
+    useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setPrendas(results);
         console.log(prendas)
-        // console.log("funcion prueba: ", results)
-    }, [results])
+    }, [results, navigate])
 
-    useEffect(() => {
-        const getAllProducts = async () => {
-            const unsubscribe = getAll([]);
-            // console.log(documentos)
-            // setPrendas(documentos);
-            return () => unsubscribe();
-        }
-        getAllProducts()
-    }, [])
+    useEffect(() => {; //Escucha los cambios de la base de datos
+        const unsubscribe = getAll([])
+        return () => unsubscribe();
+    }, []);
 
 
     return (
         <div className='dashboard' >
             <div className='prendas' >
                 {prendas.map(prenda => (
-                    <ProductCard prenda={prenda} key={prenda.id} />
+                    <ProductCard prenda={prenda} key={prenda.id} onClick={() => navigate(`/product/${prenda.id}`)} />
                 ))}
             </div>
         </div>

@@ -1,4 +1,4 @@
-export const cosasMenu = [
+export const adminMenu = [
     {
         title: "Reibidos",
         ruta: "/recibidos",
@@ -27,6 +27,17 @@ export const cosasMenu = [
     {
         title: "Completados",
         ruta: "/completados"
+    }
+]
+
+export const userMenu = [
+    {
+        title: "Dashboard",
+        ruta: "/dashboard"
+    },
+    {
+        title: "Mis Pedidos",
+        ruta: "/mis-pedidos",
     }
 ]
 

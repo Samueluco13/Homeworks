@@ -24,7 +24,7 @@ export const authSlice = createSlice({
             state.rol = action.payload.rol;
         },
         logout: (state) => {
-            state.uid = null,
+            state.uid = null;
             state.logged = false;
             state.displayName = null;
             state.email = null;
