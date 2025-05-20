@@ -1,4 +1,3 @@
-import React from 'react'
 import { IoShirtOutline } from "react-icons/io5";
 import { PiPants } from "react-icons/pi";
 import { GiConverseShoe } from 'react-icons/gi';
@@ -9,9 +8,9 @@ export const OrderCard = ({pedido, toShirts, toPants, toShoes}) => {
         <div className="order-card">
             <div className="order-card-info">
                 <h3>NUEVO PEDIDO</h3>
-                <p>{pedido.desc}</p>
-                <p>{pedido.price} COP</p>
-                <p>Talla {pedido.size}</p>
+                <p>{pedido.descripcion}</p>
+                <p>{pedido.precio} COP</p>
+                <p>Talla {pedido.talla}</p>
             </div>
             <div className="order-card-buttons">
                 <button onClick={() => toShirts(pedido.id)}>

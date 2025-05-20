@@ -39,7 +39,7 @@ export const useCollection = (table) => {
     
     const add = async (doc) => {
         try{
-            //Agrega el documento a la tabla especifica y lo devuelve
+            //Agrega el documento a la tabla especifica y devuelve su id
             let resDoc = await addDoc(collection(db, table), doc);
             console.log("Documento a agregar: ", resDoc);
             return {id: resDoc.id}
