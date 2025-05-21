@@ -52,7 +52,7 @@ export const useCollection = (table) => {
     const update = async (id, newData) =>{
         try{
             let updatedDoc = await updateDoc(doc(db, table, id), newData);
-            console.log("Documento a actualizar: ", updatedDoc)
+            console.log("Documento actualizado: ", updatedDoc)
         }catch(error){
             console.log(error.message);
             return null;

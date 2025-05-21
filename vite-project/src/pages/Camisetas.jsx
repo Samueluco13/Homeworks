@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
 import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
+import { moveOrderTo } from '../utils/moveOrderTo.jsx'
 
 export const Camisetas = () => {
+    const {handleMoveTo} = moveOrderTo();
+
     const {getAll, results} = useCollection("pedidos");
 
     const [camisetas, setCamisetas] = useState([]);
@@ -16,12 +19,24 @@ export const Camisetas = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["clasificacion", "==", "camisetas"])
+        const unsubscribe = getAll(["clasificacion", "==", "camiseta"])
         return () => unsubscribe();
     }, []);
 
+    const handleToCompleted = (id) => {
+        handleMoveTo(id, "despachado");
+    }
+
+    const handleToCorrect = (id) => {
+        handleMoveTo(id, "a corregir");
+    }
 
     return (
-        <MuestraPedidos pedidos={camisetas} textoVacio={"No hay pedidos de camisetas"}/>
+        <MuestraPedidos
+        pedidos={camisetas}
+        textoVacio={"No hay pedidos de camisetas"}
+        toCompleted={handleToCompleted}
+        toCorrect={handleToCorrect}
+        />
     )
 }

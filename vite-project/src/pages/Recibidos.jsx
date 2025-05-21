@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
 import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
+import { moveOrderTo } from '../utils/moveOrderTo.jsx'
 
 export const Recibidos = () => {
+    const {handleMoveTo} = moveOrderTo();
+
     const {getAll, results} = useCollection("pedidos");
 
     const [recibidos, setRecibidos] = useState([]);
@@ -20,8 +23,26 @@ export const Recibidos = () => {
         return () => unsubscribe();
     }, []);
 
+    const handleToShirt = (id) => {
+        handleMoveTo(id, "camiseta");
+    }
+
+    const handleToPants = (id) => {
+        handleMoveTo(id, "pantalon");
+    }
+
+    const handleToShoes = (id) => {
+        handleMoveTo(id, "zapato");
+    }
+
 
     return (
-        <MuestraPedidos pedidos={recibidos} textoVacio={"No hay pedidos recibidos"} />
+        <MuestraPedidos
+        pedidos={recibidos}
+        textoVacio={"No hay pedidos recibidos"}
+        toShirts={handleToShirt}
+        toPants={handleToPants}
+        toShoes={handleToShoes}
+        />
     )
 }

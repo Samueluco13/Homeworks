@@ -29,8 +29,11 @@ export const orderSlice = createSlice({
             state.productId = null;
             state.orderId = null;
             state.clasificacion = null;
+        },
+        moveTo: (state, action) => {
+            state.clasificacion = action.payload.clasificacion;
         }
     }
 });
 
-export const {create, remove} = orderSlice.actions;
+export const {create, remove, moveTo} = orderSlice.actions;

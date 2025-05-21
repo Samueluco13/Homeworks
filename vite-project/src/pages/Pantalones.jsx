@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
 
 export const Pantalones = () => {
+    const {handleMoveTo} = moveOrderTo();
+
     const {getAll, results} = useCollection("pedidos");
 
     const [pantalones, setPantalones] = useState([]);
@@ -20,8 +22,21 @@ export const Pantalones = () => {
         return () => unsubscribe();
     }, []);
 
+    const handleToCompleted = (id) => {
+        handleMoveTo(id, "despachado");
+    }
+
+    const handleToCorrect = (id) => {
+        handleMoveTo(id, "a corregir");
+    }
+
 
     return (
-        <MuestraPedidos pedidos={pantalones} textoVacio={"No hay pedidos de pantalones"}/>
+        <MuestraPedidos
+        pedidos={pantalones}
+        textoVacio={"No hay pedidos de pantalones"}
+        toCompleted={handleToCompleted}
+        toCorrect={handleToCorrect}
+        />
     )
 }
