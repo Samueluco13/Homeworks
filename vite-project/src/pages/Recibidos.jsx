@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { OrderCard } from '../components/OrderCard.jsx'
 import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
+import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
 
 export const Recibidos = () => {
-
     const {getAll, results} = useCollection("pedidos");
 
     const [recibidos, setRecibidos] = useState([]);
@@ -17,18 +16,12 @@ export const Recibidos = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["estado", "==", "recibido"])
+        const unsubscribe = getAll(["clasificacion", "==", "recibido"])
         return () => unsubscribe();
     }, []);
 
 
     return (
-    <div className='dashboard' >
-        <div className='orders'>
-            {recibidos.map((pedido) => (
-                <OrderCard key={pedido.id} pedido={pedido} />
-            ))}
-        </div>
-    </div>
+        <MuestraPedidos pedidos={recibidos} textoVacio={"No hay pedidos recibidos"} />
     )
 }

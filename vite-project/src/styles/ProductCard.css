@@ -1,4 +1,7 @@
 .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     border-color: white;
     background-color: #4F4F4F;
     border-radius: 10px;
@@ -12,6 +15,12 @@
     transform: translateY(-5px);
 }
 
-.product-card-btn{
+.product-card-button{
     margin-bottom: 16px;
+}
+
+.product-card-button.danger:hover{
+    border-color: #ff2929;
+    color: #fb4242;
+    /* filter: drop-shadow(0 0 4px red); */
 }

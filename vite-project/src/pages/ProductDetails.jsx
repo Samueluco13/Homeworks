@@ -1,13 +1,18 @@
 import {useEffect, useState} from 'react'
 import { useCollection } from '../slices/useCollection'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {useDispatch} from "react-redux"
 import { useSelector } from 'react-redux'
 import { createOrder } from '../slices/thunks/order/createOrder'
+import {Popup} from "../components/Popup"
 import "../styles/ProductDetails.css"
 
 export const ProductDetails = () => {
-    const {uid} = useSelector((state) => state.auth)
+    const [showPopup, setShowPopup] = useState(false);
+
+    const navigate = useNavigate();
+
+    const {uid} = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
 
@@ -29,10 +34,10 @@ export const ProductDetails = () => {
     }, [id]);
 
     const handleOrder = async () => {
-        const estado = "recibido"; //Todos lso pedidos deben empezar con estado recibido
+        const clasificacion = "recibido"; //Todos lso pedidos deben empezar con clasificacion recibido
         try{
             let newPedido = {
-                estado,
+                clasificacion,
                 descripcion: prendaEspecifica.descripcion,
                 precio: prendaEspecifica.precio,
                 talla: prendaEspecifica.talla,
@@ -50,9 +55,10 @@ export const ProductDetails = () => {
                         prendaEspecifica.talla,
                         id,
                         uid,
-                        estado
+                        clasificacion
                     ))
                     console.log(laOrden)
+                    setShowPopup(true);
                 }catch(error){
                     console.log("Error al realizar el pedido desde redux: ", error)
                 }
@@ -60,6 +66,11 @@ export const ProductDetails = () => {
         }catch(error){
             console.log("Error al crear pedido en firebase", error)
         }
+    }
+
+    const handlePopup = () => {
+        setShowPopup(false);
+        navigate("/dashboard");
     }
 
     return (
@@ -72,6 +83,12 @@ export const ProductDetails = () => {
             <div>
                 <button onClick={handleOrder} >Realizar Pedido</button>
             </div>
+            {showPopup && (
+                <Popup
+                text="Pedido realizado con exito"
+                button={<button onClick={handlePopup}>Ok</button>}
+                />
+            )}
         </div>
     )
 }

@@ -50,7 +50,7 @@ export const orders = [
     },
     {
         "id": 1749513600000,
-        "desc": "Jeans azul oscuro corte slim",
+        "desc": "Jean azul oscuro corte slim",
         "price": 89000,
         "size": "32"
     },
@@ -79,3 +79,15 @@ export const orders = [
         "size": "41"
     }
 ];
+
+
+export const rutas = {
+    "/recibidos": "Recibidos",
+    "/camisetas": "Camisetas",
+    "/pantalones": "Pantalones",
+    "/zapatos": "Zapatos",
+    "/a-corregir": "A Corregir",
+    "/completados": "Completados",
+    "/dashboard": "Dashboard",
+    "/mis-pedidos": "Mis Pedidos"
+}

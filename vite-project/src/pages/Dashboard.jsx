@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ProductCard } from '../components/ProductCard'
 import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
@@ -22,8 +22,8 @@ export const Dashboard = () => {
 
 
     return (
-        <div className='dashboard' >
-            <div className='prendas' >
+        <div className='dashboard'>
+            <div className='prendas'>
                 {prendas.map(prenda => (
                     <ProductCard prenda={prenda} key={prenda.id} onClick={() => navigate(`/product/${prenda.id}`)} />
                 ))}

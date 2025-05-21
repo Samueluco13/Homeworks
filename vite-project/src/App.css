@@ -18,3 +18,15 @@
   border-left: 1px solid #4b5563;
 } */
 
+.prendas{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.confirmation-btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
