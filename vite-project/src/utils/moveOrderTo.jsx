@@ -11,16 +11,11 @@ export const moveOrderTo = () => {
     const handleMoveTo = async (id, clasificacion) => {
         const actualizaciones = {clasificacion: clasificacion}
         try{
-            const actualizado = await update(id, actualizaciones)
-            console.log(actualizado);
-            console.log(actualizado.data());
-            if(actualizado){
-                try{
-                    const laActualizacion = dispatch(moveOrder(clasificacion));
-                    console.log(laActualizacion);
-                }catch(error){
-                    console.log("Error en la actualizacion de redux: ", error);
-                }
+            await update(id, actualizaciones)
+            try{
+                dispatch(moveOrder(clasificacion));
+            }catch(error){
+                console.log("Error en la actualizacion de redux: ", error);
             }
         }catch(error){
             console.log("Error al actualziar desde firebase: ", error);

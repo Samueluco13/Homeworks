@@ -21,7 +21,7 @@ export const store = configureStore({
         auth: authSlice.reducer,
         error: errorSlice.reducer,
         order: orderSlice.reducer,
-        noti: notificationSlice.reducer
+        notifications: notificationSlice.reducer
     },
     preloadedState  //Agrega los datos pre-cargados al reducer para que los tome al recargar
 });

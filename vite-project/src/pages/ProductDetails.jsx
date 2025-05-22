@@ -4,30 +4,32 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {useDispatch} from "react-redux"
 import { useSelector } from 'react-redux'
 import { createOrder } from '../slices/thunks/order/createOrder'
+import { createNotification } from '../slices/thunks/notifications/createNotification'
 import {Popup} from "../components/Popup"
 import "../styles/ProductDetails.css"
 
 export const ProductDetails = () => {
     const [showPopup, setShowPopup] = useState(false);
+    const [prendaEspecifica, setPrendaEspecifica] = useState({});
 
     const navigate = useNavigate();
+    
+    const {id} = useParams();
 
     const {uid} = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
-
-    const [prendaEspecifica, setPrendaEspecifica] = useState({});
-
-    const {id} = useParams();
-
+    
     const {getById} = useCollection("prendas");
-    const {add} = useCollection("pedidos");
+    const { add: addPedido } = useCollection("pedidos");
+    const { add: addNotificacion } = useCollection("notificaciones");
+
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         const detalles = async () => {
-            const aver = await getById(id);
-            console.log(aver);
-            setPrendaEspecifica(aver);
+            const prenda = await getById(id);
+            console.log(prenda);
+            setPrendaEspecifica(prenda);
             console.log(prendaEspecifica)
         }
         detalles();
@@ -44,12 +46,11 @@ export const ProductDetails = () => {
                 prendaId: id,
                 userId: uid
             }
-            const orderId = await add(newPedido);
-            console.log("A ver: ", orderId);
+            const orderId = await addPedido(newPedido);
             if(orderId){
                 try{
-                    const laOrden = await dispatch(createOrder(
-                        orderId,
+                    await dispatch(createOrder(
+                        orderId.id,
                         prendaEspecifica.descripcion,
                         prendaEspecifica.precio,
                         prendaEspecifica.talla,
@@ -57,8 +58,19 @@ export const ProductDetails = () => {
                         uid,
                         clasificacion
                     ))
-                    console.log(laOrden)
                     setShowPopup(true);
+                    const mensaje = `Has realizado un pedido de ${prendaEspecifica.descripcion}`
+                    let newNoti = {mensaje, userId: uid, pedidoId: orderId.id}
+                    try{
+                        await addNotificacion(newNoti);
+                        try{
+                        await dispatch(createNotification(mensaje, uid, orderId));
+                        }catch(error){
+                            console.log("Error al crear una noti en redux: ", error)
+                        }
+                    }catch(error){
+                        console.log("No creó la notificacion en firebase: ", error);
+                    }
                 }catch(error){
                     console.log("Error al realizar el pedido desde redux: ", error)
                 }

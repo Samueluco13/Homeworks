@@ -10,7 +10,7 @@ export const Login = () => {
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.error);
-    const {rol} = useSelector(state => state.auth);
+    const {rol, logged} = useSelector(state => state.auth);
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export const Login = () => {
     const [formData, setFormData] = useState({email: '', password: ''});
 
     useEffect(() => {
-        if (rol){
+        if (logged){
             switch (rol){
                 case "Admin":
                     navigate("/recibidos");
@@ -30,7 +30,7 @@ export const Login = () => {
                     navigate("/");
             }
         }
-    },[rol]);
+    },[logged]);
 
     const handleChange = (e) => {
         dispatch(clearError());

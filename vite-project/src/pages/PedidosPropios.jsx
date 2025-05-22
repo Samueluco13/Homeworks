@@ -1,15 +1,15 @@
 import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import { useCollection } from '../slices/useCollection'
+import { removeOrder } from '../slices/thunks/order/removeOrder'
 import { ProductCard } from '../components/ProductCard'
 import { Popup } from '../components/Popup'
 
-
 export const PedidosPropios = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [misPedidos, setMisPedidos] = useState([]);
-    // const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
     const [showMessagePopup, setShowMessagePopup] = useState(false);
     const {getAll, results, dltDoc} = useCollection("pedidos");
     const {uid} = useSelector(state => state.auth);
@@ -26,9 +26,8 @@ export const PedidosPropios = () => {
 
     const handleRemove = async (id) => {
         try{
-            const eliminado = await dltDoc(id);
-            console.log("Probando: ", eliminado);
-            // setShowConfirmationPopup(false);
+            await dispatch(removeOrder());
+            await dltDoc(id);
             setShowMessagePopup(true);
         }catch(error){
             console.log("Error al eliminar pedido: ", error);
@@ -52,16 +51,6 @@ export const PedidosPropios = () => {
                         ))}
                     </div> 
                 )}
-                {/* {showConfirmationPopup && (
-                    <Popup
-                    text="¿Estas seguro de que quieres eliminar tu pedido?"
-                    button={
-                        <>
-                            <button onClick={handleRemove}>Si</button>
-                            <button onClick={() => setShowConfirmationPopup(false)} >Cancelar</button>
-                        </>
-                    }/>
-                )} */}
                 {showMessagePopup && (
                     <Popup
                     text="Pedido eliminado con exito"

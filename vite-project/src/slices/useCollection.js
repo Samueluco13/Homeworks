@@ -19,15 +19,10 @@ export const useCollection = (table) => {
         }
         const unsubscribe = onSnapshot(q, (snapshot) => { //snapshot escucha los cambios de la base de datos
             const rtData = snapshot.docs.map(doc => (
-                console.log(doc.data()),
                 {...doc.data(), id: doc.id}
             )) //Ingresa el arreglo de documentos en una variable
-            console.log(rtData)
             setResults(rtData); //Settea el arreglo en el estado de results
-            
-            console.log(results)
         })
-        console.log(results)
         return unsubscribe;
     }
 
@@ -41,7 +36,6 @@ export const useCollection = (table) => {
         try{
             //Agrega el documento a la tabla especifica y devuelve su id
             let resDoc = await addDoc(collection(db, table), doc);
-            console.log("Documento a agregar: ", resDoc);
             return {id: resDoc.id}
         }catch(error){
             console.log(error.message);
@@ -51,8 +45,7 @@ export const useCollection = (table) => {
 
     const update = async (id, newData) =>{
         try{
-            let updatedDoc = await updateDoc(doc(db, table, id), newData);
-            console.log("Documento actualizado: ", updatedDoc)
+            await updateDoc(doc(db, table, id), newData);
         }catch(error){
             console.log(error.message);
             return null;
@@ -61,8 +54,7 @@ export const useCollection = (table) => {
 
     const dltDoc = async (id) => {
         try{
-            let deletedDoc = await deleteDoc(doc(db, table, id));
-            console.log("Documento a eliminar: ", deletedDoc);
+            await deleteDoc(doc(db, table, id));
         }catch (error){
             console.log(error.message);
             return null;

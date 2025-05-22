@@ -3,9 +3,12 @@ import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
 import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
 import { moveOrderTo } from '../utils/moveOrderTo.jsx'
+import { notificationCompletedOrder } from '../utils/notificationCompletedOrder.jsx'
 
 export const Zapatos = () => {
     const {handleMoveTo} = moveOrderTo();
+    const {notificationOrderComplete} = notificationCompletedOrder();
+
     const {getAll, results} = useCollection("pedidos");
 
     const [zapatos, setZapatos] = useState([]);
@@ -22,12 +25,13 @@ export const Zapatos = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleToCompleted = (id) => {
-        handleMoveTo(id, "despachado");
+    const handleToCompleted = async (id) => {
+        await handleMoveTo(id, "despachado");
+        await notificationOrderComplete(id);
     }
 
-    const handleToCorrect = (id) => {
-        handleMoveTo(id, "a corregir");
+    const handleToCorrect = async (id) => {
+        await handleMoveTo(id, "a corregir");
     }
 
 

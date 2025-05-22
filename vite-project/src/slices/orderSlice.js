@@ -19,7 +19,7 @@ export const orderSlice = createSlice({
             state.talla = action.payload.talla;
             state.productId = action.payload.productId;
             state.userId = action.payload.userId;
-            state.clasificacion = action.payload.clasificacion
+            state.clasificacion = action.payload.clasificacion;
         },
         remove: (state, action)  => {
             state.orderId = null;
