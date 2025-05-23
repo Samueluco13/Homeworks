@@ -32,8 +32,7 @@ export const useCollection = (table) => {
     }
 
     const getById = async (id) => {
-        const document = await getDoc(doc(db, table, id));
-        console.log(document)
+        await getDoc(doc(db, table, id));
         return {...document.data(), id: document.id}
     }
     

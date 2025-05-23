@@ -11,12 +11,12 @@ export const loginAuth = (email, password) => {
             dispatch(clearError());
             const response = await signInWithEmailAndPassword(auth, email, password);
             if(response){
-                console.log("Usuario logueado", response);
+                
                 const {uid, displayName, email} = response.user; //Toma algunos datos del usuario
                 
                 const loggedUser = await getDoc(doc(db, "users", uid)); //Agarra el snapshot del usuario a loguear
                 const currentUser = loggedUser.data(); //Guarda en la variable la informacion del usuario como un objeto
-                console.log(currentUser)
+                
                 dispatch(login({uid, displayName, email, rol: currentUser.rol})); //Despacha el login del reducer
                 localStorage.setItem("currentUser", JSON.stringify({uid, displayName, email, rol: currentUser.rol}));
             }

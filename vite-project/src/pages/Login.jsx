@@ -42,7 +42,6 @@ export const Login = () => {
         e.preventDefault();
         try{
             await dispatch(loginAuth(formData.email, formData.password));
-            console.log(rol);
         }catch (error) {
             console.error("Error al iniciar sesion", error);
         }

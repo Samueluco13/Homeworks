@@ -11,9 +11,7 @@ export const notificationCompletedOrder = () => {
 
     const notificationOrderComplete = async (id) => {
         const pedidoBuscado = await pedidoById(id);
-        console.log("Buscando pedido: ", pedidoBuscado)
         const prendaBuscada = await prendaById(pedidoBuscado.prendaId)
-        console.log("Buscando prenda: ", prendaBuscada)
         const mensaje = `Tu pedido de ${prendaBuscada.descripcion} fué despachado`
         let userId = pedidoBuscado.userId, pedidoId = id
         let newNoti = {mensaje, userId, pedidoId}

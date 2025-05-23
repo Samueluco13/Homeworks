@@ -15,7 +15,6 @@ export const ACorregir = () => {
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setACorregir(results);
-        console.log(aCorregir)
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos

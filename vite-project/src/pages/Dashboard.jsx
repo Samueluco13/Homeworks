@@ -12,7 +12,6 @@ export const Dashboard = () => {
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setPrendas(results);
-        console.log(prendas)
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos

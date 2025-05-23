@@ -15,7 +15,6 @@ export const Recibidos = () => {
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setRecibidos(results);
-        console.log(recibidos)
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
@@ -35,7 +34,7 @@ export const Recibidos = () => {
         handleMoveTo(id, "zapato");
     }
 
-
+    console.log(recibidos)
     return (
         <MuestraPedidos
         pedidos={recibidos}

@@ -12,7 +12,6 @@ export const Completados = () => {
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setDespachados(results);
-        console.log(despachados)
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos

@@ -28,9 +28,7 @@ export const ProductDetails = () => {
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         const detalles = async () => {
             const prenda = await getById(id);
-            console.log(prenda);
             setPrendaEspecifica(prenda);
-            console.log(prendaEspecifica)
         }
         detalles();
     }, [id]);
@@ -60,25 +58,13 @@ export const ProductDetails = () => {
                     ))
                     setShowPopup(true);
                     try{
-                        const mensajeUsuario = `Has realizado un pedido de ${prendaEspecifica.descripcion}`
-                        let newUserNoti = {mensajeUsuario, userId: uid, pedidoId: orderId.id}
-                        await addNotificacion(newUserNoti);
+                        const mensaje = `Has realizado un pedido de ${prendaEspecifica.descripcion}`
+                        let newNoti = {mensaje, userId: uid, pedidoId: orderId.id}
+                        await addNotificacion(newNoti);
                         try{
                         await dispatch(createNotification(mensaje, uid, orderId));
                         }catch(error){
-                            console.log("Error al crear una userNoti en redux: ", error)
-                        }
-                    }catch(error){
-                        console.log("No creó la notificacion del usuario en firebase: ", error);
-                    }
-                    try{
-                        const mensajeAdmin = `Se ha realizado un pedido de ${prendaEspecifica.descripcion}`
-                        let newAdminNoti = {mensajeAdmin, userId: uid, pedidoId: orderId.id}
-                        await addNotificacion(newAdminNoti);
-                        try{
-                        await dispatch(createNotification(mensaje, uid, orderId));
-                        }catch(error){
-                            console.log("Error al crear una userNoti en redux: ", error)
+                            console.log("Error al crear una noti en redux: ", error)
                         }
                     }catch(error){
                         console.log("No creó la notificacion del usuario en firebase: ", error);

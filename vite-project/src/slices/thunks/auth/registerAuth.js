@@ -10,7 +10,6 @@ export const registerAuth = (email, password, name, rol) => {
         try{
             dispatch(clearError());
             const response = await createUserWithEmailAndPassword(auth, email, password); //Crea un unevo usuario
-            console.log("response", response);
             if (response){
                 await updateProfile(response.user, {
                     displayName: name

@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Popup.css";
 
 export const Popup = ({ text, button, children }) => {

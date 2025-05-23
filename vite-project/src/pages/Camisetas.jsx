@@ -17,7 +17,6 @@ export const Camisetas = () => {
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
         setCamisetas(results);
-        console.log(camisetas)
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos

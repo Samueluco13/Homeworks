@@ -97,8 +97,8 @@ export const Header = () => {
     setIsMenuOpen(!isMenuOpen);
     setNotificationsMenu(false);
     }
-
-
+    
+    
     return (
         <header className='header' >
             <div className='header-container' >
