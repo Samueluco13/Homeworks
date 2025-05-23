@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
-import { adminMenu, userMenu } from '../data.js'
-import { MenuItem } from '../MenuItem.jsx'
+import { adminMenu, userMenu, rutas } from '../utils/data.js'
+import { MenuItem } from './MenuItem.jsx'
 import { IoReorderThree } from "react-icons/io5";
 import { NotificationBell } from './NotificationBell.jsx';
 import { Popup } from './Popup.jsx'
@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useCollection } from '../slices/useCollection.js';
 import { logoutAuth } from '../slices/thunks/auth/logoutAuth.js';
 import { removeNotification } from '../slices/thunks/notifications/removeNotification.js';
-import { rutas } from '../data.js';
 import '../styles/Header.css'
 
 export const Header = () => {
@@ -60,9 +59,10 @@ export const Header = () => {
     }, [results, auth.uid])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
+        if (!auth.uid) return;
         const unsubscribe = getAll(["userId", "==", auth.uid])
         return () => unsubscribe();
-    }, []);
+    }, [auth.uid]);
 
     const handleDeleteNotification = async (id) => {
         try{
@@ -112,7 +112,7 @@ export const Header = () => {
                         <MenuItem arbol={auth.rol === "Admin" ? (itemsAdminMenu) : (itemsUserMenu)}/>
                     )}
                 </div>
-                {auth.logged ? (
+                {auth.logged && auth.rol !== "Admin" ? (
                     <>
                     <NotificationBell onClick={() => setNotificationsMenu(!notificationsMenu)} count={notiCounter}/>
                         <div className={`notifications ${notificationsMenu ? 'open' : ''}`} >

@@ -9,8 +9,13 @@ export const useCollection = (table) => {
         setResults([]); //Vacía el arreglo en caso de que tenga elementos
 
         let q = null; //Define e inicializa los documentos resultantes y la query en null
-
-        if (condition && condition.length === 3) {
+        
+        if (Array.isArray(condition?.[0])) { //Si la primera posicion es un arreglo, se trata de un arreglo de arreglos
+            //Para cada condicion (posicion/elemento) del arreglo, se aplica el where
+            const conditions = condition.map(condicion => where(condicion[0], condicion[1], condicion[2]));
+            //Se usa ...conditions para que en vez de poner todo el arreglo de condiciones, las poga cada una separada
+            q = query(collection(db, table), ...conditions);
+        }else if (condition && condition.length === 3) {
             //La query es la colección condicionada
             q = query(collection(db, table), where(condition[0], condition[1], condition[2]));
         }else{

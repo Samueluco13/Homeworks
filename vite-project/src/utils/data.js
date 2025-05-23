@@ -37,7 +37,16 @@ export const userMenu = [
     },
     {
         title: "Mis Pedidos",
-        ruta: "/mis-pedidos",
+        children: [
+            {
+                title: "Pendientes",
+                ruta: "/mis-pedidos-pendientes"
+            },
+            {
+                title: "Despachados",
+                ruta: "/mis-pedidos-despachados"
+            }
+        ]
     }
 ]
 
@@ -49,5 +58,6 @@ export const rutas = {
     "/a-corregir": "A Corregir",
     "/completados": "Completados",
     "/dashboard": "Dashboard",
-    "/mis-pedidos": "Mis Pedidos"
+    "/mis-pedidos-pendientes": "Mis Pedidos Pendientes",
+    "/mis-pedidos-despachados": "Mis Pedidos Despachados"
 }

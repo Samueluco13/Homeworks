@@ -6,21 +6,20 @@ import { removeOrder } from '../slices/thunks/order/removeOrder'
 import { ProductCard } from '../components/ProductCard'
 import { Popup } from '../components/Popup'
 
-export const PedidosPropios = () => {
+export const MisPendientes = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [misPedidos, setMisPedidos] = useState([]);
+    const [misPedidosPendientes, setMisPedidosPendientes] = useState([]);
     const [showMessagePopup, setShowMessagePopup] = useState(false);
     const {getAll, results, dltDoc} = useCollection("pedidos");
     const {uid} = useSelector(state => state.auth);
 
     useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
-        setMisPedidos(results);
-        console.log(misPedidos)
+        setMisPedidosPendientes(results);
     }, [results])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["userId","==", uid])
+        const unsubscribe = getAll([["userId","==", uid], ["clasificacion","!=","despachado"]])
         return () => unsubscribe();
     }, []);
 
@@ -37,11 +36,11 @@ export const PedidosPropios = () => {
 
     return (
         <div className='dashboard' >
-                {misPedidos.length === 0 ? (
+                {misPedidosPendientes.length === 0 ? (
                     <h2>No tienes pedidos realizados</h2>
                 ) : (
                     <div className='prendas' >
-                        {misPedidos.map(pedido => (
+                        {misPedidosPendientes.map(pedido => (
                             <ProductCard
                             prenda={pedido}
                             key={pedido.id}

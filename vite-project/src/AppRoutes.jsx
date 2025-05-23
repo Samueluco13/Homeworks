@@ -13,7 +13,8 @@ import { Completados } from './pages/Completados.jsx'
 
 import { Dashboard } from './pages/Dashboard.jsx';
 import { ProductDetails } from './pages/ProductDetails.jsx';
-import { PedidosPropios } from './pages/PedidosPropios.jsx';
+import { MisPendientes } from './pages/MisPendientes.jsx';
+import {MisDespachados} from "./pages/MisDespachados.jsx"
 
 import { Header } from './components/Header.jsx'
 
@@ -70,9 +71,14 @@ function App() {
                         <ProductDetails/>
                     </PrivateRoute>
                 } />
-                <Route path='/mis-pedidos' element={
+                <Route path='/mis-pedidos-pendientes' element={
                     <PrivateRoute roles={"usuario"} > 
-                        <PedidosPropios/>
+                        <MisPendientes/>
+                    </PrivateRoute>
+                } />
+                <Route path='/mis-pedidos-despachados' element={
+                    <PrivateRoute roles={"usuario"} > 
+                        <MisDespachados/>
                     </PrivateRoute>
                 } />
             </Routes>

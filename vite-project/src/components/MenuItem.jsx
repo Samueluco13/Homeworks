@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuNode } from "./MenuNode"
 
 export const MenuItem = ({arbol}) => {

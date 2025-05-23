@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useCollection } from '../slices/useCollection.js'
 import { useNavigate } from 'react-router-dom'
 import {MuestraPedidos} from "../components/MuestraPedidos.jsx"
+import { moveOrderTo } from '../utils/moveOrderTo.jsx'
 import { notificationCompletedOrder } from '../utils/notificationCompletedOrder.jsx'
 
 export const Pantalones = () => {

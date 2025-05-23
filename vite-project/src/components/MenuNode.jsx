@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { Link } from "react-router-dom";
 import { MenuItem } from "./MenuItem";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";

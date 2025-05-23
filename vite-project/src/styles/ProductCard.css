@@ -19,8 +19,12 @@
     margin-bottom: 16px;
 }
 
+.product-card-button.dispatch:hover{
+    border-color: #29ff46;
+    color: #51fb42;
+}
+
 .product-card-button.danger:hover{
     border-color: #ff2929;
     color: #fb4242;
-    /* filter: drop-shadow(0 0 4px red); */
 }
