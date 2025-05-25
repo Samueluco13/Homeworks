@@ -20,7 +20,7 @@ export const Zapatos = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["clasificacion", "==", "zapato"])
+        const unsubscribe = getAll([["clasificacion", "==", "zapato"], ["orderBy", "moved", "asc"]])
         return () => unsubscribe();
     }, []);
 

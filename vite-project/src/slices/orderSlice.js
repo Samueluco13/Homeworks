@@ -9,7 +9,9 @@ export const orderSlice = createSlice({
         talla: null,
         productId: null,
         userId: null,
-        clasificacion: null
+        clasificacion: null,
+        created: null,
+        moved: null
     },
     reducers: {
         create: (state, action) => {
@@ -20,6 +22,7 @@ export const orderSlice = createSlice({
             state.productId = action.payload.productId;
             state.userId = action.payload.userId;
             state.clasificacion = action.payload.clasificacion;
+            state.created = action.payload.created
         },
         remove: (state, action)  => {
             state.orderId = null;
@@ -29,9 +32,12 @@ export const orderSlice = createSlice({
             state.productId = null;
             state.orderId = null;
             state.clasificacion = null;
+            state.created = null;
+            state.moved = null;
         },
         moveTo: (state, action) => {
             state.clasificacion = action.payload.clasificacion;
+            state.moved = action.payload.moved
         }
     }
 });

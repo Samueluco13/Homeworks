@@ -26,7 +26,6 @@ export const notificationCompletedOrder = () => {
             console.log("No creó la notificacion en firebase: ", error);
         }
     }
-
     
     return {notificationOrderComplete}
 }

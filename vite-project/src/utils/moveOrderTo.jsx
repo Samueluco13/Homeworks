@@ -9,11 +9,11 @@ export const moveOrderTo = () => {
     const {update} = useCollection("pedidos")
 
     const handleMoveTo = async (id, clasificacion) => {
-        const actualizaciones = {clasificacion: clasificacion}
+        const actualizaciones = {clasificacion: clasificacion, moved: Date.now()}
         try{
             await update(id, actualizaciones)
             try{
-                dispatch(moveOrder(clasificacion));
+                dispatch(moveOrder(clasificacion, moved));
             }catch(error){
                 console.log("Error en la actualizacion de redux: ", error);
             }

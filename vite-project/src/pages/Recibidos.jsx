@@ -18,7 +18,7 @@ export const Recibidos = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["clasificacion", "==", "recibido"])
+        const unsubscribe = getAll([["clasificacion", "==", "recibido"], ["orderBy", "created", "asc"]])
         return () => unsubscribe();
     }, []);
 

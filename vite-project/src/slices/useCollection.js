@@ -1,5 +1,5 @@
 import { db } from "../firebase/config";
-import {collection, addDoc, query, where, updateDoc, getDoc, deleteDoc, doc, onSnapshot} from 'firebase/firestore';
+import {collection, addDoc, query, where, updateDoc, getDoc, deleteDoc, doc, onSnapshot, orderBy} from 'firebase/firestore';
 import { useState } from 'react';
 
 export const useCollection = (table) => {
@@ -8,21 +8,30 @@ export const useCollection = (table) => {
     const getAll = (condition) => {
         setResults([]); //Vacía el arreglo en caso de que tenga elementos
 
-        let q = null; //Define e inicializa los documentos resultantes y la query en null
+        let q = null;
+        const ordenados = [];
+        const filtrados = [];
         
         if (Array.isArray(condition?.[0])) { //Si la primera posicion es un arreglo, se trata de un arreglo de arreglos
-            //Para cada condicion (posicion/elemento) del arreglo, se aplica el where
-            const conditions = condition.map(condicion => where(condicion[0], condicion[1], condicion[2]));
-            //Se usa ...conditions para que en vez de poner todo el arreglo de condiciones, las poga cada una separada
-            q = query(collection(db, table), ...conditions);
-        }else if (condition && condition.length === 3) {
+            for (const i of condition){ //Para cada item (arreglo) de la condicion
+                if(i[0] === "orderBy"){ //Verifica si es una sonsulta de ordenamiento
+                    //En caso de que si, aplica el ordenamiento a ese arreglo
+                    ordenados.push(orderBy(i[1],i[2]));
+                }else{
+                    //En caso de que no, realiza la consulta normal
+                    filtrados.push(where(i[0], i[1], i[2]))
+                }
+            }
+            //Se usa ...arreglo para que en vez de poner todo el arreglo de condiciones, las ponga cada una separada
+            q = query(collection(db, table), ...filtrados, ...ordenados);
+        }else if (condition && condition.length === 3 && condition[0] !== "orderBy") { //Para condiciones normales
             //La query es la colección condicionada
             q = query(collection(db, table), where(condition[0], condition[1], condition[2]));
         }else{
             //La query es la colección entera
             q = query(collection(db, table));
         }
-        const unsubscribe = onSnapshot(q, (snapshot) => { //snapshot escucha los cambios de la base de datos
+        const unsubscribe = onSnapshot(q, (snapshot) => { //onSnapshot escucha los cambios de la base de datos
             const rtData = snapshot.docs.map(doc => (
                 {...doc.data(), id: doc.id}
             )) //Ingresa el arreglo de documentos en una variable
@@ -32,7 +41,7 @@ export const useCollection = (table) => {
     }
 
     const getById = async (id) => {
-        await getDoc(doc(db, table, id));
+        const document = await getDoc(doc(db, table, id));
         return {...document.data(), id: document.id}
     }
     

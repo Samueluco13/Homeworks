@@ -15,7 +15,7 @@ export const Completados = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["clasificacion", "==", "despachado"])
+        const unsubscribe = getAll([["clasificacion", "==", "despachado"], ["orderBy", "moved", "desc"]])
         return () => unsubscribe();
     }, []);
 

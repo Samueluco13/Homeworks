@@ -19,7 +19,7 @@ export const MisPendientes = () => {
     }, [results])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll([["userId","==", uid], ["clasificacion","!=","despachado"]])
+        const unsubscribe = getAll([["userId","==", uid], ["clasificacion","!=","despachado"], ["orderBy", "created", "asc"]])
         return () => unsubscribe();
     }, []);
 

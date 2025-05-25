@@ -25,7 +25,7 @@ export const ProductDetails = () => {
     const { add: addNotificacion } = useCollection("notificaciones");
 
 
-    useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiemo real en la base de datos
+    useEffect(() => { //Setea en el arreglo de la variable de estado lo que haya en tiempo real en la base de datos
         const detalles = async () => {
             const prenda = await getById(id);
             setPrendaEspecifica(prenda);
@@ -34,9 +34,11 @@ export const ProductDetails = () => {
     }, [id]);
 
     const handleOrder = async () => {
-        const clasificacion = "recibido"; //Todos lso pedidos deben empezar con clasificacion recibido
+        const clasificacion = "recibido"; //Todos los pedidos deben empezar con clasificacion recibido
+        const created = Date.now()
         try{
             let newPedido = {
+                created,
                 clasificacion,
                 descripcion: prendaEspecifica.descripcion,
                 precio: prendaEspecifica.precio,
@@ -54,7 +56,8 @@ export const ProductDetails = () => {
                         prendaEspecifica.talla,
                         id,
                         uid,
-                        clasificacion
+                        clasificacion,
+                        created
                     ))
                     setShowPopup(true);
                     try{

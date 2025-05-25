@@ -5,21 +5,18 @@ export const notificationSlice = createSlice({
     initialState: {
         mensaje: null,
         userId: null,
-        pedidoId: null,
-        notiCounter: 0
+        pedidoId: null
     },
     reducers: {
         create: (state, action) => {
             state.mensaje = action.payload.mensaje;
             state.userId = action.payload.userId;
             state.pedidoId = action.payload.pedidoId;
-            state.notiCounter += 1;
         },
         remove: (state, action) => {
             state.mensaje = null;
             state.userId = null;
             state.pedidoId = null;
-            state.notiCounter -= 1;
         }
     }
 })

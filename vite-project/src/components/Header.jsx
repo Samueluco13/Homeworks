@@ -20,7 +20,6 @@ export const Header = () => {
     const {getAll, dltDoc, results} = useCollection("notificaciones")
 
     const auth = useSelector((state) => state.auth);
-    const {notiCounter} = useSelector(state => state.notifications)
     
     const dispatch = useDispatch();
 
@@ -114,7 +113,7 @@ export const Header = () => {
                 </div>
                 {auth.logged && auth.rol !== "Admin" ? (
                     <>
-                    <NotificationBell onClick={() => setNotificationsMenu(!notificationsMenu)} count={notiCounter}/>
+                    <NotificationBell onClick={() => setNotificationsMenu(!notificationsMenu)} count={notificaciones.length}/>
                         <div className={`notifications ${notificationsMenu ? 'open' : ''}`} >
                             {notificationsMenu && (
                                 <ul className='notification-dropdown' >

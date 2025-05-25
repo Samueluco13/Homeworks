@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Popup } from '../components/Popup.jsx'
 import { loginAuth } from '../slices/thunks/auth/loginAuth.js'
 import {useSelector, useDispatch} from 'react-redux'
 import { clearError } from '../slices/errorSlice.js'
@@ -13,8 +12,7 @@ export const Login = () => {
     const {rol, logged} = useSelector(state => state.auth);
 
     const navigate = useNavigate();
-
-    const [showFormPopup, setShowFormPopup] = useState(false);
+    
     const [formData, setFormData] = useState({email: '', password: ''});
 
     useEffect(() => {
@@ -82,12 +80,6 @@ export const Login = () => {
                     <a onClick={() => navigate("/register")}>Register</a>
                 </p>
             </form>
-            {showFormPopup && (
-                <Popup
-                text="Login exitoso"
-                button={<button onClick={()=> setShowFormPopup(false)}>Ok</button>}
-                />
-            )}
         </div>
     )
 }

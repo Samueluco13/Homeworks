@@ -18,7 +18,7 @@ export const ACorregir = () => {
     }, [results, navigate])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll(["clasificacion", "==", "a corregir"])
+        const unsubscribe = getAll([["clasificacion", "==", "a corregir"], ["orderBy", "moved", "asc"]])
         return () => unsubscribe();
     }, []);
 

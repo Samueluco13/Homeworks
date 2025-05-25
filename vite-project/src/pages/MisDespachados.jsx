@@ -17,7 +17,7 @@ export const MisDespachados = () => {
     }, [results])
 
     useEffect(() => {; //Escucha los cambios de la base de datos
-        const unsubscribe = getAll([["userId","==", uid], ["clasificacion","==","despachado"]])
+        const unsubscribe = getAll([["userId","==", uid], ["clasificacion","==","despachado"], ["orderBy", "moved", "asc"]])
         return () => unsubscribe();
     }, []);
 
