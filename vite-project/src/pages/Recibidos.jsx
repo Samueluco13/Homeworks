@@ -37,6 +37,7 @@ export const Recibidos = () => {
     console.log(recibidos)
     return (
         <MuestraPedidos
+        title={"NUEVO PEDIDO"}
         pedidos={recibidos}
         textoVacio={"No hay pedidos recibidos"}
         toShirts={handleToShirt}

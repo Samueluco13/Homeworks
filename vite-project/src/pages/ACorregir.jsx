@@ -37,6 +37,7 @@ export const ACorregir = () => {
 
     return (
         <MuestraPedidos
+        title={"PEDIDO A CORREGIR"}
         pedidos={aCorregir}
         textoVacio={"No hay pedidos a corregir"}
         toShirts={handleToShirt}

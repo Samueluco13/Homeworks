@@ -21,6 +21,6 @@ export const Completados = () => {
 
 
     return (
-        <MuestraPedidos pedidos={despachados} textoVacio={"No hay pedidos despachados"}/>
+        <MuestraPedidos title={"PEDIDO DESPACHADO"} pedidos={despachados} textoVacio={"No hay pedidos despachados"}/>
     )
 }

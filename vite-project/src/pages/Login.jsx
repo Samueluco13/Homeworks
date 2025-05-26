@@ -76,7 +76,7 @@ export const Login = () => {
                     <button className='btn-form'>Login</button>
                 </div>
                 <p className="link">
-                    ¿Ya tienes una cuenta?{" "}
+                    ¿No tienes una cuenta?{" "}
                     <a onClick={() => navigate("/register")}>Register</a>
                 </p>
             </form>

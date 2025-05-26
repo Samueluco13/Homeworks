@@ -36,6 +36,7 @@ export const Pantalones = () => {
 
     return (
         <MuestraPedidos
+        title={"PEDIDO DE PANTALON"}
         pedidos={pantalones}
         textoVacio={"No hay pedidos de pantalones"}
         toCompleted={handleToCompleted}

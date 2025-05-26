@@ -6,10 +6,10 @@ import { FaXmark } from "react-icons/fa6";
 import "../styles/OrderCard.css"
 
 
-export const OrderCard = ({pedido, toShirts, toPants, toShoes, toCompleted, toCorrect}) => {
+export const OrderCard = ({title, pedido, toShirts, toPants, toShoes, toCompleted, toCorrect}) => {
     return (
         <div className="order-card">
-                <h3 className="order-card-titulo" >NUEVO PEDIDO</h3>
+                <h3 className="order-card-titulo" >{title}</h3>
                 <p className="order-card-descripcion" >{pedido.descripcion}</p>
                 <p className="order-card-precio" >{pedido.precio} COP</p>
                 <p className="order-card-talla" >Talla {pedido.talla}</p>

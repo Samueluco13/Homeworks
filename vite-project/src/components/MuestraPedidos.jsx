@@ -1,6 +1,6 @@
 import { OrderCard } from '../components/OrderCard.jsx'
 
-export const MuestraPedidos = ({pedidos, textoVacio, toShirts, toPants, toShoes, toCorrect, toCompleted}) => {
+export const MuestraPedidos = ({title, pedidos, textoVacio, toShirts, toPants, toShoes, toCorrect, toCompleted}) => {
     return (
     <div className='dashboard' >
         {pedidos.length === 0 ? (
@@ -9,6 +9,7 @@ export const MuestraPedidos = ({pedidos, textoVacio, toShirts, toPants, toShoes,
             <div className='orders'>
                 {pedidos.map((pedido) => (
                     <OrderCard
+                    title={title}
                     key={pedido.id}
                     pedido={pedido}
                     toShirts={toShirts}
