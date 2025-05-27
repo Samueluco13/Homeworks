@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "react-d3-tree": "^3.6.6"
+    "d3-force": "^3.0.0",
+    "react-d3-graph": "^2.6.0",
+    "react-d3-tree": "^3.6.6",
+    "react-router-dom": "^7.6.1"
   }
 }
