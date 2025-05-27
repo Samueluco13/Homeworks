@@ -1,13 +1,10 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Grafo } from "../components/Grafo"
 
 export const Home = () => {
-    const navigate = useNavigate();
     return (
         <div>
-            <h1>Home</h1>
-            <button onClick={() => navigate("prev-tree")} >Ir al arbol viejo</button>
-            <button onClick={() => navigate("new-tree")} >Ir al arbol nuevo</button>
+            <h1>Grafo</h1>
+            <Grafo/>
         </div>
     )
 }
