@@ -1,4 +1,4 @@
-import { Grafo } from "../components/Grafo"
+import {Grafo} from "../components/Grafo"
 
 export const Home = () => {
     return (

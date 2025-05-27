@@ -28,14 +28,12 @@ export const Grafo = () => {
         
     }, [reload])
     
-        const data = {
-            nodes: grafitoRef.current.nodes.map(nodo => ({id: nodo})),
-            links: Object.entries(grafitoRef.current.adjList).flatMap(([fromNode, toNode]) =>
-                toNode.map(target => ({ source: fromNode, target: target }))
-            )
-        }
-    
-    console.log(data);
+    const data = {
+        nodes: grafitoRef.current.nodes.map(nodo => ({id: nodo})),
+        links: Object.entries(grafitoRef.current.adjList).flatMap(([fromNode, toNode]) =>
+            toNode.map(target => ({ source: fromNode, target: target }))
+        )
+    }
 
     const handleClickNode = (node) => {
         const adjList = grafitoRef.current.getNodeAdjacencyList(node);
