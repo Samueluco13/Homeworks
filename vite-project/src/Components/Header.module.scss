@@ -1,0 +1,42 @@
+@use "../App.scss" as main;
+@use "../styles/SharedMixins.scss" as mixins;
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--principal);
+    padding: 30px;
+    font-weight: bold;
+    width: 100hv;
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        a {
+            color: var(--color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    }
+    
+    .light:not(a){
+        height: 25px;
+        width: 25px;
+    }
+    .dark:not(a){
+        height: 25px;
+        width: 25px;
+    }
+
+    .light:hover{
+        @include mixins.actions-hover(main.theme(main.$light-theme, text-color));
+    }
+
+    .dark:hover{
+        @include mixins.actions-hover(main.theme(main.$dark-theme, text-color));
+    }
+}
+

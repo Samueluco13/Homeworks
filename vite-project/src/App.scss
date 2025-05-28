@@ -1,0 +1,56 @@
+@use "./styles/SharedMixins.scss" as mixins;
+
+#root {
+  text-align: center;
+}
+* {
+  margin: 0;
+}
+
+$light-theme:(
+  bg: white,
+  text-color: black,
+  principal: #f7dcf4
+);
+
+$dark-theme:(
+  bg: #1a1a1a,
+  text-color: white,
+  principal: #551986
+);
+
+//Funcion que recore los colores de los temas
+@function theme($themes, $key){
+  @return map-get($themes, $key)
+};
+
+body.light {
+  --bg: #{theme($light-theme, bg)};
+  --text-color: #{theme($light-theme, text-color)};
+  --principal: #{theme($light-theme, principal)};
+}
+
+body.dark {
+  --bg: #{theme($dark-theme, bg)};
+  --text-color: #{theme($dark-theme, text-color)};
+  --principal: #{theme($dark-theme, principal)};
+}
+
+body{
+  background-color: var(--bg); //Se debe usar var(--custonVar) porque el navegador no la interpreta sola
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button{
+  background-color: var(--principal);
+  color: var(--text-color);
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 6px;
+  padding: 5px;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

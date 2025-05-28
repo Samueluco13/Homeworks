@@ -1,0 +1,35 @@
+.noticias {
+    width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(73, 73, 73, 0.377);
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 20px;
+            padding: 1rem;
+            border-left: 4px solid var(--principal);
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+
+            h2 {
+                margin-bottom: 10px;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.06);
+            }
+        }
+    }
+}

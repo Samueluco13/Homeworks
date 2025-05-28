@@ -1,0 +1,62 @@
+@use "../styles/SharedMixins.scss" as mixins;
+@use "../App.scss" as main;
+
+
+form {
+    width: 400px;
+    margin: 20px auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--bg);
+    box-shadow: 0 0 10px rgba(73, 73, 73, 0.377);
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    h1 {
+        text-align: center;
+        margin: 15px;
+        color: var(--text-color);
+    }
+
+    div {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: var(--bg);
+            color: var(--text-color);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus { //Para cuando es seleccionado el input
+            border-color: var(--principal);
+            outline: none;
+        }
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--principal);
+        color: var(--text-color);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+}
+
+.light:hover{ //Al no poder usar la customVar usamos la funcion para que devuelva el valor
+    @include mixins.button-hover(main.theme(main.$light-theme, principal))
+}
+
+.dark:hover{
+    @include mixins.button-hover(main.theme(main.$dark-theme, principal))
+}

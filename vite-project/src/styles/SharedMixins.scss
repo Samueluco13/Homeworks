@@ -1,0 +1,19 @@
+@use "sass:color";
+
+@mixin button-hover($bg-color){
+    background-color: if(lightness($bg-color) > 60,
+        scale-color($bg-color, $lightness: -15%),
+        scale-color($bg-color, $lightness: 15%)
+    );
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+@mixin actions-hover($color){
+    color: if(lightness($color) > 60,
+        scale-color($color, $lightness: -15%),
+        scale-color($color, $lightness: 15%)
+    );
+    transform: scale(1.08);
+    transition: all 0.3s ease;
+}

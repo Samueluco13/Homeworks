@@ -1,5 +1,4 @@
-//import { useState } from 'react'
-import './App.css'
+import './App.scss'
 import { Login } from './Pages/Login.jsx'
 import { UserProvider } from './Context/UserContext.jsx'
 import { Profile } from './Pages/Profile.jsx'
@@ -7,7 +6,6 @@ import {Route, Routes} from 'react-router-dom'
 import {PrivateRoutes} from './Routes/PrivateRoutes.jsx'
 import Principal from './Pages/Principal.jsx'
 import { Header } from './Components/Header.jsx'
-
 
 
 function App() {
@@ -18,7 +16,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Principal/>} />
           <Route path="/login" element={<Login/>} />
-
           <Route path="/profile" element={
             <PrivateRoutes>
               <Profile/>
