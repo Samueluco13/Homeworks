@@ -1,0 +1,32 @@
+.city-form {
+  margin-bottom: 1rem;
+}
+
+.city-form form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.city-form input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.city-form button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #646cff;
+  border-radius: 4px;
+  background: #646cff;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.city-form button:hover {
+  background: #747bff;
+  border-color: #747bff;
+} 

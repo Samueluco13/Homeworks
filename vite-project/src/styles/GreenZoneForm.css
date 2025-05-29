@@ -1,0 +1,37 @@
+.green-zone-form {
+  margin-top: 1rem;
+}
+
+.green-zone-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.green-zone-form input,
+.green-zone-form select {
+  padding: 0.5rem;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.green-zone-form select {
+  cursor: pointer;
+}
+
+.green-zone-form button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #646cff;
+  border-radius: 4px;
+  background: #646cff;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.green-zone-form button:hover {
+  background: #747bff;
+  border-color: #747bff;
+} 

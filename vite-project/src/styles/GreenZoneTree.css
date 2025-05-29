@@ -1,0 +1,69 @@
+.green-zone-tree {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.green-zone-tree h3 {
+  margin-bottom: 1rem;
+}
+
+.tree-container {
+  width: 100%;
+  height: 400px;
+  background-color: #1a1a1a;
+  position: relative;
+}
+
+.node-text {
+  fill: white;
+  stroke: white;
+  stroke-width: 0.3;
+  font-size: 14px;
+}
+
+.node-text.small {
+  font-size: 12px;
+}
+
+.node-circle {
+  fill: #3a3a3a;
+  stroke: #646cff;
+  stroke-width: 2;
+  r: 20;
+}
+
+.node-container {
+  cursor: context-menu;
+}
+
+.green-zone-tree > div {
+  height: calc(100% - 50px) !important;
+}
+
+.no-zones-message {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #646cff;
+  text-align: center;
+}
+
+.no-zones-message p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.no-zones-message p:first-child {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para las líneas de conexión */
+/* .rd3t-link {
+  stroke: #4a4a4a !important;
+  stroke-width: 2px !important;
+}  */
